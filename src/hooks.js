@@ -6,11 +6,12 @@ const accessToken =
 
 Cesium.Ion.defaultAccessToken = accessToken;
 
+// Returns an instance of viewer
 export function useCesium(targetID) {
   const [viewer, setViewer] = useState();
 
   useEffect(() => {
-    if (document.getElementById(targetID).childElementCount >= 1) return; 
+    if (document.getElementById(targetID).childElementCount >= 1) return;
     setViewer(
       new Cesium.Viewer(targetID, {
         requestRenderMode: true,
@@ -26,4 +27,13 @@ export function useCesium(targetID) {
   }, []); // eslint-disable-line
 
   return viewer;
+}
+
+// Only runs once the viewer is initialized
+export function useCesiumEffect(viewer, fn = () => {}, deps = []) {
+  useEffect(() => {
+    if (viewer) {
+      fn();
+    }
+  }, deps); // eslint-disable-line
 }
