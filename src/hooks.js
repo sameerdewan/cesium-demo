@@ -36,5 +36,5 @@ export function useCesiumEffect(viewer, fn = () => {}, deps = []) {
     if (viewer) {
       fn();
     }
-  }, deps); // eslint-disable-line
+  }, [viewer, ...deps]); // eslint-disable-line
 }
