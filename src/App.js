@@ -21,7 +21,7 @@ function App() {
         },
       });
     },
-    [viewer1]
+    []
   );
 
   return (
